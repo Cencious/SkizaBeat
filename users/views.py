@@ -37,4 +37,5 @@ def get_user_data(request):
     return Response({'error': 'not authenticated'}, status=400)
 
 @api_view(['POST'])
-def register_api(request);
+def register_api(request):
+    pass
