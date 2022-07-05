@@ -1,3 +1,2 @@
-from django.shortcuts import render
-
-# Create your views here.
+import imp
+from rest_framework.decorators import api_view
