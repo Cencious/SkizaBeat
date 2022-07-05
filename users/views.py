@@ -10,3 +10,12 @@ def login_api(request):
     serializer.is_valid(raise_exception=True)
     user = serializer.validated_data['user']
     _,token = AuthToken.objects.create(user)
+
+    return Response({
+        'user_info': {
+            'id': user.id,
+            'username': user.username,
+            'email': user.email
+        },
+        'token': token
+    })
