@@ -46,5 +46,14 @@ def register_api(request):
     user = serializer.save()
     _,token = AuthToken.objects.create(user)
     
-    return Response()
-    
+    return Response({
+            'user_info': {
+            'id': user.id,
+            'username': user.username,
+            'email': user.email
+            },
+            'token': token
+        }
+
+    )
+
