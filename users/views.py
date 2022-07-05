@@ -46,4 +46,5 @@ def register_api(request):
     user = serializer.save()
     _,token = AuthToken.objects.create(user)
     
-  
+    return Response()
+    
