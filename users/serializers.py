@@ -18,4 +18,17 @@ class RegisterSerializer(serializers.ModelSerializer):
             }
         }
     def create(self, validated_data):
-           
+        username = validated_data.get('username')
+        password = validated_data.get('password')
+        email = validated_data.get('email')
+        first_name = validated_data.get('first_name')
+        last_name = validated_data.get('last_name')
+
+        user = User.objects.create(username=username,
+        password=password,
+        email=email,
+        first_name=first_name,
+        last_name=last_name
+        )
+
+        return user
