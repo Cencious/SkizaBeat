@@ -7,5 +7,6 @@ urlpatterns= [
     path('user/', views.get_user_data),
     path('register/', views.register_api),
     path('logout/', knox_views.LogoutView.as_view()),
+    path('logout/', knox_views.LogoutView.as_view()),
    
 ]
