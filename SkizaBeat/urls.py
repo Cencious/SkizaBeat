@@ -15,8 +15,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from users import views as user_views
+
+from rest_framework.routers import DefaultRouter
+
+
+router=DefaultRouter()
+router.register('profile',user_views.UserProfileViewSet)
+router.register('login',user_views.LoginViewSet,basename='login')
+router.register('feed',user_views.UserProfileFeedViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('upload',user_views.UploadView.as_view(),name='file-upload'),
+    path('',include(router.urls)),
+    
+    path('', include('rest_framework.urls'))
     
 ]
