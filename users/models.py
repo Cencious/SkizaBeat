@@ -6,6 +6,13 @@ from django.contrib.auth.models import BaseUserManager
 
 
 # Create your models here.
+
+class User(models.Model):
+    username = models.CharField(max_length=200)
+    email = models.EmailField(max_length=500)
+    password = models.CharField(max_length=200)
+    confirm_password = models.CharField(max_length=200)
+
 class UserProfileManager(BaseUserManager):
 
     def create_user(self,email,name,password=None):
@@ -70,3 +77,4 @@ class ProfileFeedItem(models.Model):
     def __str__(self):
         
         return self.status_text
+

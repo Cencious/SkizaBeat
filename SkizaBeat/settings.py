@@ -34,10 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'rest_framework',
     'rest_framework.authtoken',
-    'users',
-    'iBeat',
     'cloudinary',
     'corsheaders',
     'django.contrib.admin',
@@ -46,6 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'knox',
+    'users',
+    'iBeat',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +69,7 @@ CORS_ALLOW_METHODS = [
     "POST",
     "PUT",
 ]
+
 
 ROOT_URLCONF = 'SkizaBeat.urls'
 
@@ -95,10 +97,12 @@ WSGI_APPLICATION = 'SkizaBeat.wsgi.application'
 
 DATABASES = {
     'default': {
+
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'prof',
-        'USER':'caren',
-        'PASSWORD':'Abcd@1020',
+        'NAME': 'ibeat',
+        'USER': 'kakan',
+        'PASSWORD':'Abiathar2022'
+
     }
 }
 
@@ -121,6 +125,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        'knox.auth.TokenAuthentication',
+    ]
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/

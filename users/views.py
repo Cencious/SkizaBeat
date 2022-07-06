@@ -1,14 +1,21 @@
 
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.authtoken.serializers import AuthTokenSerializer
+from knox.auth import AuthToken
+from .serializers import RegisterSerializer
+from users import serializers
+
 from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.decorators import action
-from rest_framework.response import Response
+
 from rest_framework.parsers import FormParser,MultiPartParser,JSONParser,FileUploadParser
 from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
 from rest_framework import filters
-from rest_framework.authtoken.serializers import AuthTokenSerializer
+
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.permissions import IsAuthenticated
@@ -16,7 +23,57 @@ from rest_framework.permissions import IsAuthenticated
 from .import serializers
 from .import permissions
 from . import models
-# Create your views here.
+
+@api_view(['POST'])
+def login_api(request):
+    serializer = AuthTokenSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+    user = serializer.validated_data['user']
+    _,token = AuthToken.objects.create(user)
+
+    return Response({
+        'user_info': {
+            'id': user.id,
+            'username': user.username,
+            'email': user.email
+        },
+        'token': token
+    })
+
+
+@api_view(['GET'])
+def get_user_data(request):
+    user = request.user
+
+    if user.is_authenticated:
+        return Response({
+            'user_info': {
+            'id': user.id,
+            'username': user.username,
+            'email': user.email
+            },
+        })
+
+    return Response({'error': 'not authenticated'}, status=400)
+
+@api_view(['POST'])
+def register_api(request):
+    serializer = RegisterSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+
+    user = serializer.save()
+    _,token = AuthToken.objects.create(user)
+    
+    return Response({
+            'user_info': {
+            'id': user.id,
+            'username': user.username,
+            'email': user.email
+            },
+            'token': token
+        }
+
+    )
 
 
 
@@ -58,13 +115,7 @@ class UploadView(APIView):
         else:
             return Response({'message':'No file here'},status=status.HTTP_400_BAD_REQUEST)
 
-class LoginViewSet(viewsets.ViewSet):
 
-    serializer_class=AuthTokenSerializer
-
-    def create(self,request):
-
-        return ObtainAuthToken().as_view()(request=request._request)
 
 class UserProfileFeedViewSet(viewsets.ModelViewSet):
 
@@ -77,5 +128,6 @@ class UserProfileFeedViewSet(viewsets.ModelViewSet):
         '''Sets the user profile to the logged in user'''
 
         serializer.save(user_profile=self.request.user)
+
 
 

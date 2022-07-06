@@ -25,11 +25,17 @@ router.register('profile',user_views.UserProfileViewSet)
 router.register('login',user_views.LoginViewSet,basename='login')
 router.register('feed',user_views.UserProfileFeedViewSet)
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('api/', include('users.urls')),
+    
+
     path('upload',user_views.UploadView.as_view(),name='file-upload'),
     path('',include(router.urls)),
     
     path('', include('rest_framework.urls'))
     
+
 ]
