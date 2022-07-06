@@ -1,4 +1,5 @@
 beat/
 venv/
+profile/
 __pycache__/
 .env
