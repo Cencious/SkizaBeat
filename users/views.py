@@ -64,18 +64,9 @@ def register_api(request):
     user = serializer.save()
     _,token = AuthToken.objects.create(user)
     
-    return Response({
-            'user_info': {
-            'id': user.id,
-            'username': user.username,
-            'email': user.email
-            },
-            'token': token
-        }
+    user_info = {'id': user.id,'username': user.username,'email': user.email}
 
-    )
-
-
+    return Response({ 'token': token, 'user_info': user_info}, template_name='register'  )
 
 
 class UserProfileViewSet(viewsets.ModelViewSet):
