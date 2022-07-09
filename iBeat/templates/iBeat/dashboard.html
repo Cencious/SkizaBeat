@@ -1,0 +1,64 @@
+{% extends 'iBeat/base.html' %}
+{%load static%}
+{% block content%}
+<section id="dashboard" class="home-section">
+    <div class="container-fluid" >
+      <div class="row"  >
+        <div class="col-1" id="divided"></div>
+        <div class="col-11" id="divided">
+    
+        <div class="text">Dashboard</div>
+            <p class="text-muted" style="font-weight: bold;">RECENTLY PLAYED</p>
+            <div id="card1" class="card">
+              <img id="image" src="/static/images/lady.jpg" class="img-fluid" alt="...">
+              <div class="card-body">
+                <a href="#" class="card-title">Card title</a>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="text-muted">SkizaBeat</a>
+                <br> <br>
+                <a href="#" id="recently" class="btn btn-dark">View</a>
+              </div>
+            </div>
+    
+       </div>
+      </div>
+    
+    
+      <div class="row" id="divided">
+        <div class="col-1"></div>
+        <div class="col-6" id="col5">
+          <p class="text-muted" style="font-weight: bold;">MOST PLAYED</p>
+          <hr>
+          <div class="row">
+            <div class="col-6">
+              <p>Islands In The Streets</p>
+              
+            </div>
+            <div class="col-4">
+              <p class="text-muted">Doly Parton</p>
+            </div>
+            <div class="col-2">
+              08:30
+            </div>
+          </div>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-3" id="col6">
+          <p class="text-muted" style="font-weight: bold;">TOP PODCASTER</p>
+          <hr>
+          <div class="podcaster">
+          <img id="podcaster" src="/static/images/man.jpg" class="img-thumbnail" alt="...">
+          <p class="text-muted mt-3">Doly Parton</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>
+    
+    {% endblock content%} 
+    
+    
+    
+    
+    
+    
