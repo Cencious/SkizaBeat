@@ -38,25 +38,4 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
 
 
-class UserProfileSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = models.UserProfile
-        fields = ('id','email','name','profile_picture')
-        extra_kwargs = {'password':{'write_only':True}}
-
-    
-
-class ProfileFeedItemSerializer(serializers.ModelSerializer):
-    '''for profile feed items'''
-
-    class Meta:
-        model=models.ProfileFeedItem
-        fields=('id','user_profile','status_text','created_on')
-        extra_kwargs={'user_profile':{'read_only':True}}
-
-
-
-
-
 

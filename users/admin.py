@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from users.models import UserProfile,ProfileFeedItem
+from users.models import Profile
 
 
 # Register your models here.
 
-admin.site.register(UserProfile)
-admin.site.register(ProfileFeedItem)
+admin.site.register(Profile)
+
 
