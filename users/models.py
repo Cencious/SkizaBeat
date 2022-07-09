@@ -1,50 +1,35 @@
-from tokenize import blank_re
 from django.db import models
 from cloudinary.models import CloudinaryField
-from django.contrib.auth.models import  User
-
-
-
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from iBeat.models import Post
 
 # Create your models here.
-
-
-class UserProfile(models.Model):
-    '''This is a userprofile class'''
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
-    bio = models.TextField(max_length=254, blank=True)
-    email=models.EmailField(max_length=200,unique=True)
-    name=models.CharField(max_length=100)
-    profile_picture = CloudinaryField('pictures/',default='http://res.cloudinary.com/dim8pysls/image/upload/v1639001486/x3mgnqmbi73lten4ewzv.png')
-  
-
-    objects = User.objects.all()
-
-
-    USERNAME_FIELD ='email'
-    REQUIRED_FIELDS = ['name']
-
-    def get_full_name(self):
-        '''Get users full name'''
-
-        return self.name
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = CloudinaryField('image')
+    names = models.CharField(blank=True, max_length=120)
+    bio=models.CharField(max_length=60)
+    email = models.EmailField(max_length=100, blank=True)
+   
+   
     
-    def get_short_name(self):
-        '''Get short name'''
-
-        return self.name
-
+    @property
+    def username(self):
+        return self.user.username
+    
     def __str__(self):
-        
-        return self.email
+        return f'{self.user.username} Profile'
+    
+    @receiver(post_save, sender=User)
+    def create_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+            
 
-class ProfileFeedItem(models.Model):
-
-    user_profile = models.ForeignKey('UserProfile',on_delete=models.CASCADE)
-    status_text=models.CharField(max_length=100)
-    created_on=models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        
-        return self.status_text
+    @receiver(post_save, sender=User)
+    def save_profile(sender, instance, **kwargs):
+        instance.profile.save()
+    
 
