@@ -96,16 +96,16 @@ WSGI_APPLICATION = 'SkizaBeat.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
+# DATABASES = {
+#     'default': {
 
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'profile',
-        'USER': 'caren',
-        'PASSWORD':'abcd1020'
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'profile',
+#         'USER': 'caren',
+#         'PASSWORD':'abcd1020'
 
-    }
-}
+#     }
+# }
 
 
 # Password validation
