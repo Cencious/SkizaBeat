@@ -16,26 +16,24 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from users import views as user_views
+from iBeat import views as ibeat_views
+from django.contrib.auth import views as auth_views
 
-from rest_framework.routers import DefaultRouter
+from django.conf.urls.static import static
+from django.conf import settings
 
-
-router=DefaultRouter()
-router.register('profile',user_views.UserProfileViewSet)
-# router.register('login',user_views.LoginViewSet,basename='login')
-router.register('feed',user_views.UserProfileFeedViewSet)
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-    path('api/', include('users.urls')),
-    
-
-    path('upload',user_views.UploadView.as_view(),name='file-upload'),
-    path('',include(router.urls)),
-    
-    path('', include('rest_framework.urls'))
-    
+    path('', include('iBeat.urls')),
+    path('register/',user_views.register,name='register'),
+    path('profile/',user_views.profile,name='profile'),
+    path('login/',auth_views.LoginView.as_view(template_name='users/login.html'),name='login'),
+    path('logout/',auth_views.LogoutView.as_view(template_name='users/logout.html'),name='logout'),
 
 ]
+
+if settings.DEBUG:
+ urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+ urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
