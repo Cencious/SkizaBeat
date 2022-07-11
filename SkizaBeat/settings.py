@@ -45,9 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'iBeat',
-    'crispy_forms',
-    'bootstrap4',
     'cloudinary',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -100,7 +99,7 @@ DATABASES = {
     'default': {
 
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'skiza',
+        'NAME': 'skizabeat',
         'USER': 'moringa',
         'PASSWORD':'morces'
 
@@ -167,9 +166,9 @@ MEDIA_URL = '/media/'
 
 # adding config
 cloudinary.config( 
-  cloud_name = "dv6nw0q0h", 
-  api_key = "568678726622523", 
-  api_secret = "n8VasdJV4fqJYDes45AZMvBtNCA" 
+  cloud_name = "morces", 
+  api_key = "529525848425389", 
+  api_secret = "FauEpfLCvB93wAzeq1gElRAQYrk" 
 )
 
 

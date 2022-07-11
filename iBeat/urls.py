@@ -7,7 +7,6 @@ urlpatterns =[
     path('index/',iBeat_views.index, name='index'),
     path('discover/',iBeat_views.discover, name='discover'),
     path('dashboard/',iBeat_views.dashboard, name='dashboard'),
-    path('profile/',iBeat_views.profile, name='profile'),
     path('playlist/',iBeat_views.playlist, name='playlist'),
     # path('search/', iBeat_views.search, name='search'),
 ]
