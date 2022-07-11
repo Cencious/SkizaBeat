@@ -22,7 +22,7 @@ from rest_framework.routers import DefaultRouter
 
 router=DefaultRouter()
 router.register('profile',user_views.UserProfileViewSet)
-router.register('login',user_views.LoginViewSet,basename='login')
+# router.register('login',user_views.LoginViewSet,basename='login')
 router.register('feed',user_views.UserProfileFeedViewSet)
 
 
