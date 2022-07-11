@@ -45,9 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'iBeat',
-    'crispy_forms',
-    'bootstrap4',
     'cloudinary',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -96,22 +95,27 @@ WSGI_APPLICATION = 'SkizaBeat.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
+DATABASES = {
+     'default': {
 
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'skizabeat',
+        'USER': 'moringa',
+        'PASSWORD':'morces'
 #         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME': 'profile',
 #         'USER': 'caren',
 #         'PASSWORD':'abcd1020'
 
-#     }
-# }
+    }
+ }
 
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
+
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
@@ -167,9 +171,9 @@ MEDIA_URL = '/media/'
 
 # adding config
 cloudinary.config( 
-  cloud_name = "dv6nw0q0h", 
-  api_key = "568678726622523", 
-  api_secret = "n8VasdJV4fqJYDes45AZMvBtNCA" 
+  cloud_name = "morces", 
+  api_key = "529525848425389", 
+  api_secret = "FauEpfLCvB93wAzeq1gElRAQYrk" 
 )
 
 

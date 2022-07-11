@@ -37,6 +37,28 @@
               </div>
               </div>
             </div>
+            <div class="musics">
+              <div class="container">
+                {% for music in songs.all %}
+                    {% if music.artist == song.artist and music.song_title != song.song_title %}
+                        <div class="row">
+                            <div class="py-2 col-2">
+                                <img class="avatar" src="{{ song.image.url }}" alt="avatar"/>
+                            </div>
+                            <div class="pt-2 col-10">
+                                <h5 style="font-weight: bolder;color:blueviolet;">{{ music.song_title }}</h5>
+                            </div>
+
+                            <div class="col-12">
+                                <audio preload="none" controls style="width: 100%" >
+                                    <source src="{{ music.song.url }}" type="audio/ogg">
+                                </audio>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            </div>
           </div>
         </div>
     </section>
