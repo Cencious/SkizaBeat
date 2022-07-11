@@ -1,106 +1,66 @@
 
-from .serializers import RegisterSerializer
-from users import serializers
+# from users.forms import SignUpForm
 
-from .import serializers
-from .import permissions
-from . import models
-
-@api_view(['POST'])
-def login_api(request):
-    serializer = AuthTokenSerializer(data=request.data)
-    serializer.is_valid(raise_exception=True)
-    user = serializer.validated_data['user']
-    _,token = AuthToken.objects.create(user)
-
-    return Response({
-        'user_info': {
-            'id': user.id,
-            'username': user.username,
-            'email': user.email
-        },
-        'token': token
-    })
+from django.shortcuts import redirect, render
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from .forms import UserUpdateForm,ProfileUpdateForm,UserRegisterForm
 
 
-@api_view(['GET'])
-def get_user_data(request):
-    user = request.user
+def register(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            messages.success(request,f'Account created for {username}')
+            return redirect('login')
+    else:
+        form = UserRegisterForm()
+    return render(request, 'users/register.html', {'form': form})
 
-    if user.is_authenticated:
-        return Response({
-            'user_info': {
-            'id': user.id,
-            'username': user.username,
-            'email': user.email
-            },
-        })
-
-    return Response({'error': 'not authenticated'}, status=400)
-
-@api_view(['POST'])
-def register_api(request):
-    serializer = RegisterSerializer(data=request.data)
-    serializer.is_valid(raise_exception=True)
-
-    user = serializer.save()
-    _,token = AuthToken.objects.create(user)
-    
-    user_info = {'id': user.id,'username': user.username,'email': user.email}
-
-    return Response({ 'token': token, 'user_info': user_info}, template_name='register'  )
-
-
-class UserProfileViewSet(viewsets.ModelViewSet):
-     
-    serializer_class=serializers.UserProfileSerializer
-    queryset=models.UserProfile.objects.all()
-    
-    authentication_classes=(TokenAuthentication,) #tuple
-    permission_classes=(permissions.UpdateOwnProfile,)
-    parser_classes=(JSONParser,FileUploadParser,FormParser,MultiPartParser)
-    filter_backends=(filters.SearchFilter,)
-    search_fields=('name','email',)
-    
-    @action(detail=True,methods=['PUT'])
-    def profile(self,request,pk=None):
-        
-        user=self.get_object()
-        UserProfile=user.UserProfile
-        serializer = serializers.UserProfileSerializer(UserProfile,data=request.data)
-
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data,status=200)
-        else:
-            return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
-
-
-class UploadView(APIView):
-    parser_classes=(FileUploadParser,)
-
-    def post(self,request):
-        file=request.data.get('file',None)
-        import pdb;pdb.set_trace()
-        print(file)
-        if file:
-            return Response({'message':'File is received'},status=200)
-        else:
-            return Response({'message':'No file here'},status=status.HTTP_400_BAD_REQUEST)
+# login view 
+# def login_request(request):
+# 	if request.method == "POST":
+# 		form = AuthenticationForm(request, data=request.POST)
+# 		if form.is_valid():
+# 			username = form.cleaned_data.get('username')
+# 			password = form.cleaned_data.get('password')
+# 			user = authenticate(username=username, password=password)
+# 			if user is not None:
+# 				login(request, user)
+# 				messages.info(request, f"You are now logged in as {username}.")
+# 				return redirect('index')
+# 			else:
+# 				messages.error(request,"Invalid username or password.")
+# 		else:
+# 			messages.error(request,"Invalid username or password.")
+# 	form = AuthenticationForm()
+# 	return render(request=request, template_name="registration/login.html", context={"login_form":form})      
 
 
 
-class UserProfileFeedViewSet(viewsets.ModelViewSet):
+def profile(request):
 
-    authentication_classes =(TokenAuthentication,)
-    serializer_class=serializers.ProfileFeedItemSerializer
-    queryset=models.ProfileFeedItem.objects.all()
-    permission_classes=(permissions.PostOwnStatus,IsAuthenticated)
+    title = 'Profile'
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST,instance=request.user)
+        p_form = ProfileUpdateForm(request.POST,request.FILES,
+                                   instance=request.user.profile)
+        if p_form.is_valid() and u_form.is_valid():
+            p_form.save()
+            u_form.save()
+        messages.success(request,f'Update successful')
+        return redirect('profile')
 
-    def perform_create(self,serializer):
-        '''Sets the user profile to the logged in user'''
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
 
-        serializer.save(user_profile=self.request.user)
-
-
-
+    context = {
+        'title':title,
+        'u_form': u_form,
+        'p_form': p_form
+    }
+    return render(request, 'users/profile.html',context)

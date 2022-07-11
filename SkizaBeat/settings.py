@@ -9,9 +9,10 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
 import os
 import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 from pathlib import Path
 from decouple import config
 
@@ -35,7 +36,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'rest_framework.authtoken',
-    'cloudinary',
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,10 +43,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'knox',
     'users',
     'iBeat',
+    'crispy_forms',
+    'bootstrap4',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -99,9 +100,9 @@ DATABASES = {
     'default': {
 
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ibeat',
-        'USER': 'kakan',
-        'PASSWORD':'Abiathar2022'
+        'NAME': 'profile',
+        'USER': 'caren',
+        'PASSWORD':'abcd1020'
 
     }
 }
@@ -125,13 +126,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        # 'rest_framework.authentication.BasicAuthentication',
-        # 'rest_framework.authentication.SessionAuthentication',
-        'knox.auth.TokenAuthentication',
-    ]
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         # 'rest_framework.authentication.BasicAuthentication',
+#         # 'rest_framework.authentication.SessionAuthentication',
+#         'knox.auth.TokenAuthentication',
+#     ],
+#     'DEFAULT_RENDERER_CLASSES': [
+#         'rest_framework.renderers.TemplateHTMLRenderer',
+#         'rest_framework.renderers.BrowsableAPIRenderer',
+#     ]
+
+# }
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
@@ -148,17 +154,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-# cloudinary.config( 
-#   cloud_name = config('cloud_name'), 
-#   api_key = config('api_key'), 
-#   api_secret = config('api_secret'),
-# )
+# adding config
+cloudinary.config( 
+  cloud_name = "dv6nw0q0h", 
+  api_key = "568678726622523", 
+  api_secret = "n8VasdJV4fqJYDes45AZMvBtNCA" 
+)
 
 
 
@@ -167,3 +179,9 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = 'home'
+LOGIN_URL = 'login'
+LOGOUT_REDIRECT_URL = 'login'

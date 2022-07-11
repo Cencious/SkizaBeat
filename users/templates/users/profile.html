@@ -1,0 +1,47 @@
+{% extends 'iBeat/base.html' %}
+{% load static %}
+{% load cloudinary %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<section id="profile" class="home-section">
+    <div class="container-fluid" id="divided">
+      <div class="row" >
+        <div class="col-1"></div>
+        <div class="col-11" id="col10">
+          <div class="text">Profile</div>
+
+    <div class="col-md-4">
+    <div class="content-section">
+        <div class="media">
+            <img src="{{ user.profile.image.url }}" alt="profile image" class="rounded-circle img-fluid" style="height:200px;width:200px">
+            <div class="media-body">
+                <h2 class="account-heading ml-4">Username: {{ user.username }}</h2>
+                <p class="text-dark ml-4"> Email: {{ user.email }}</p>
+                
+            </div>
+        </div>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="boarder-bottom mb-4">Account Info</legend>
+                {{ u_form|crispy }}
+                {{ p_form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-dark" type="submit">Update</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="col-md-8"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}
+
+
