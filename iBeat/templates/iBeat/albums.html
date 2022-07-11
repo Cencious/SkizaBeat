@@ -1,0 +1,51 @@
+{% extends 'iBeat/base.html' %}
+{%load static%}
+{% block content%}
+
+<link rel="stylesheet" href="{% static 'css/albums.css' %}">
+<section id="playlist" class="home-section">
+    <div class="container-fluid" id="divided">
+      <div class="row" >
+        <div class="col-1"></div>
+        <div class="col-11" id="col10">
+          <div class="text">Albums</div>
+          <div class="row " id="row2">
+            <div class="col-sm-5">
+              <img src="lady.jpg" class="img-fluid" alt="...">
+            </div>
+            <div class="col-sm-3">
+              <h4 class="fw-bold mt-3">Song</h4>
+              <p class="text-muted fw-bold mt-2">Artist</p>
+              <p class="text-muted">Produced</p> <br><br><hr>
+              <p>Song description</p>
+            </div>
+            <!-- <div id="line" class="col-sm-1"></div> -->
+            <div class="col-sm-4">
+              <div class="row">
+                <div class="col-2">
+                  <p style="color: #eef1f8;">Play</p>
+                  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAARZJREFUSEvFlP8RwUAQhb9UQAk6QAVKoAQdoAI6QAdUQAl0QAWUoAPmjZxZN5Fsfo2dyR/J5d53u2/3ElqOpGV9PIA78ASOwBbQuzs8AInbuAA7YA88ikhlABKcAB0jqqz0aC0zygDCv9MUNDaKyiSATpZUBRD2dwHB9PSNqEo4DO91APagPWAOzNKPH92mAAEWGuK/AKWrmqrGZ+AWp53TmoUZrIBlgx33Ncnq8UPO6Sr5ZTepf0dtAuIrIWZlZVDol92kAbEDYwFXYBARXX5ZgAZl/aNEC2Bj1tx+xWlLJExj0NMVLbgNt19ZdVUpdEKFLjCVLg63X57Wy6qa26+qALdfVQHKyuVXHYAghX7VBeQM/nvpBQfwOhkm3hpVAAAAAElFTkSuQmCC"/>
+                </div>
+                <div class="col-7">
+                  <p class="fw-bold text-muted">Song</p>
+                  <p class="mt-3">Islands in the Stream</p>
+                  
+                </div>
+                
+                <div class="col-3">
+                  <p class="fw-bold text-muted">Duration</p>
+                  <p class="mt-3">3:45</p>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+
+     
+    </div>
+</section>

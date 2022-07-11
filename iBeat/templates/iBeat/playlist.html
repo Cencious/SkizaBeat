@@ -2,12 +2,13 @@
 {%load static%}
 {% block content%}
 
+<link rel="stylesheet" href="{% static 'css/playlist.css' %}">
 <section id="playlist" class="home-section">
     <div class="container-fluid" id="divided">
       <div class="row" >
         <div class="col-1"></div>
         <div class="col-11" id="col10">
-          <div class="text">Discover</div>
+          <div class="text">Playlist</div>
           
           <div class="album">
             <svg class="album__menu" height="12px" version="1.1" viewBox="0 0 18 12" width="18px"><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#000000" id="Core" transform="translate(-87.000000, -342.000000)"><g id="menu" transform="translate(87.000000, 342.000000)"><path d="M0,12 L18,12 L18,10 L0,10 L0,12 L0,12 Z M0,7 L18,7 L18,5 L0,5 L0,7 L0,7 Z M0,0 L0,2 L18,2 L18,0 L0,0 L0,0 Z" id="Shape"/></g></g></g></svg>
@@ -66,6 +67,7 @@
       <br>
 
       <div class="row" style="width: 90%; margin-left: 5%;">
+        <hr>
         <div class="col-6">
             <p class="text-muted mr-2" style="font-weight: bold;">SONGS</p>
             <ul>
@@ -78,8 +80,23 @@
         </div>
         <div class="col-2">
             <p class="text-muted" style="font-weight: bold;">ALBUM</p>
+            <button type="button" style="height: 35px;" class="btn btn-dark">See more...</button>
         </div>
+        <hr>
       </div>
     </div>
 </section>
+
+<script>
+  const body = document.querySelector("body");
+const album = document.querySelector(".album");
+let loaded = false;
+
+album.classList.add("album--loaded");
+
+setTimeout(() => {
+album.classList.add("album--parallax");
+}, 1200);
+
+  </script>
 {% endblock content%}
