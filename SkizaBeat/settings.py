@@ -100,9 +100,9 @@ DATABASES = {
     'default': {
 
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ibeat',
-        'USER': 'kakan',
-        'PASSWORD':'Abiathar2022'
+        'NAME': 'skiza',
+        'USER': 'moringa',
+        'PASSWORD':'Access'
 
     }
 }
