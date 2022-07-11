@@ -1,35 +1,24 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-from iBeat.models import Post
+from django.forms import ImageField
+from iBeat.models import Post 
+from PIL import Image
+
 
 # Create your models here.
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE,related_name='profile')
     image = CloudinaryField('image')
-    names = models.CharField(blank=True, max_length=120)
-    bio=models.CharField(max_length=60)
+    name = models.CharField(blank=True, max_length=120)
+    bio = models.CharField(max_length=60 ,blank=True)
     email = models.EmailField(max_length=100, blank=True)
-   
-   
-    
-    @property
-    def username(self):
-        return self.user.username
+    post = models.ForeignKey(Post, on_delete=models.SET_NULL, null=True, related_name='posts', blank=True)
     
     def __str__(self):
         return f'{self.user.username} Profile'
     
-    @receiver(post_save, sender=User)
-    def create_profile(sender, instance, created, **kwargs):
-        if created:
-            Profile.objects.create(user=instance)
-            
-
-    @receiver(post_save, sender=User)
-    def save_profile(sender, instance, **kwargs):
-        instance.profile.save()
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
     
-
+        

@@ -96,21 +96,26 @@ WSGI_APPLICATION = 'SkizaBeat.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+     'default': {
 
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'skizabeat',
         'USER': 'moringa',
         'PASSWORD':'morces'
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'profile',
+#         'USER': 'caren',
+#         'PASSWORD':'abcd1020'
 
     }
-}
+ }
 
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
+
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
@@ -125,18 +130,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        # 'rest_framework.authentication.BasicAuthentication',
-        # 'rest_framework.authentication.SessionAuthentication',
-        'knox.auth.TokenAuthentication',
-    ],
-    'DEFAULT_RENDERER_CLASSES': [
-        'rest_framework.renderers.TemplateHTMLRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer',
-    ]
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         # 'rest_framework.authentication.BasicAuthentication',
+#         # 'rest_framework.authentication.SessionAuthentication',
+#         'knox.auth.TokenAuthentication',
+#     ],
+#     'DEFAULT_RENDERER_CLASSES': [
+#         'rest_framework.renderers.TemplateHTMLRenderer',
+#         'rest_framework.renderers.BrowsableAPIRenderer',
+#     ]
 
-}
+# }
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
