@@ -55,6 +55,7 @@ body {
   min-height: 100vh;
   background: #eef1f8;
   perspective: 90vw;
+  overflow-x: hidden;
 }
 
 .toggles {
