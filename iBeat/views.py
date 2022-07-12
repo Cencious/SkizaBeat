@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from .models import Artist,Album,Song
+from .models import Song,Album
 from django.contrib import messages
 
 # Create your views here.
@@ -8,25 +8,25 @@ def index(request):
 
 def home(request):
     songs = Song.objects.all()
-    artists = Artist.objects.all()
-    return render(request, 'iBeat/home.html', {'songs':songs, 'artists':artists})
-
+    # artists = Artist.objects.all()
+    # musics=list(Music.objects.all().values())
+    return render(request, 'iBeat/home.html', { 'songs':songs})
 
 def discover(request):
     albums = Album.objects.all()
-    musics = Song.objects.filter(album__album_title__icontains=albums)
-    return render(request, 'iBeat/discover.html', {'musics':musics, 'albums':albums})
+    # musics = Song.objects.filter(album__album_title__icontains=albums)
+    return render(request, 'iBeat/discover.html', { 'albums':albums})
 
 def dashboard(request):
-    songs = Song.objects.all()
-    return render(request, 'iBeat/dashboard.html' ,{'songs':songs})
+    # songs = Song.objects.all()
+    return render(request, 'iBeat/dashboard.html' )
 
 def playlist(request):
-    all_songs = Song.objects.all()
-    return render(request, 'iBeat/playlist.html', {'all_songs':all_songs})
+    # all_songs = Song.objects.all()
+    return render(request, 'iBeat/playlist.html')
 
 def search_playlist(request):
-    songs = Song.objects.all()
+    # songs = Song.objects.all()
     queryset = request.GET.get('search')
     if queryset is not None:
         songs = songs.filter(song__icontains = queryset)

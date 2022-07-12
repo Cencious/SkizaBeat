@@ -3,8 +3,6 @@ from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
 from django.forms import ImageField
 from iBeat.models import Post 
-from PIL import Image
-
 
 # Create your models here.
 class Profile(models.Model):

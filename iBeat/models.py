@@ -1,7 +1,8 @@
-from re import M
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from .helper import get_audio_length, validate_is_audio
+
 
 # Create your models here.
 class Post(models.Model):
@@ -15,15 +16,15 @@ class Post(models.Model):
 
 
 class Album(models.Model):
-    album_title = models.CharField(max_length=120)
-    artist = models.CharField(max_length=100)
-    album_image = models.FileField(upload_to='album_logo/')
+    album_title = models.CharField(max_length=120, null=True)
+    artist = models.CharField(max_length=100, null=True)
+    album_image = models.FileField(upload_to='album_logo/', null=True)
 
     def __str__(self):
         return self.album_title
 
 class Artist(models.Model):
-    name = models.CharField(max_length=60)
+    name = models.CharField(max_length=60, null=True)
     image = CloudinaryField('image')
 
     def __str__(self):
@@ -32,16 +33,57 @@ class Artist(models.Model):
 class Song(models.Model):
     album=models.ForeignKey(Album, on_delete=models.CASCADE)
     artist =models.ForeignKey(Artist, on_delete=models.CASCADE)
-    song = models.FileField(upload_to='song/')
+    song = models.FileField(upload_to='song/',validators=[validate_is_audio])
+    time_length=models.DecimalField(max_digits=20, decimal_places=2,blank=True, null=True)
     image = CloudinaryField('image')
     song_title = models.CharField(max_length=50)
     genre = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.song
+        return self.song_title
+
+#     def save(self,*args, **kwargs):
+#         if not self.time_length:
+#             # logic for getting length of audio
+#             audio_length=get_audio_length(self.audio_file)
+#             self.time_length =f'{audio_length:.2f}'
+
+#         return super().save(*args, **kwargs)
+
+#     class META:
+#         ordering="id"
     
-    
-    
+# class Music(models.Model):
+#     title=models.CharField(max_length=500)
+#     artiste=models.CharField(max_length=500)
+#     album=models.ForeignKey('Album',on_delete=models.SET_NULL,null=True,blank=True)
+#     time_length=models.DecimalField(max_digits=20, decimal_places=2,blank=True)
+#     audio_file=models.FileField(upload_to='musics/',validators=[validate_is_audio])
+#     cover_image=models.ImageField(upload_to='music_images/')
+
+#     def save(self,*args, **kwargs):
+#         if not self.time_length:
+#             # logic for getting length of audio
+#             audio_length=get_audio_length(self.audio_file)
+#             self.time_length =f'{audio_length:.2f}'
+
+#         return super().save(*args, **kwargs)
+
+#     class META:
+#         ordering="id"
+
+
+# class Album(models.Model):
+#     name=models.CharField(max_length=400, null=True)
+
+
+
+
+
+
+
+
+
 
 # class Playlist(models.Model):
     
