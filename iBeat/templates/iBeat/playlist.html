@@ -86,9 +86,9 @@
         <div class="col-4">
           
             <p class="text-muted" style="font-weight: bold;">ARTIST</p>
-            {% for song in songs.all %}
-            {% for artist in artists.all %}
-            <p>{{ song.artist.name }}</p>
+            {% for song in songs %}
+            {% for artist in artists %}
+            <p>{{ song.artist }}</p>
             {% endfor %}
             {% endfor %}
         </div>

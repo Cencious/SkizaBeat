@@ -1,4 +1,6 @@
-from re import M
+
+from glob import glob
+import os
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
@@ -31,14 +33,25 @@ class Artist(models.Model):
 
 class Song(models.Model):
     album=models.ForeignKey(Album, on_delete=models.CASCADE)
-    artist =models.ForeignKey(Artist, on_delete=models.CASCADE)
+    artist =models.CharField(max_length=100, null=True, blank=True)
     song = models.FileField(upload_to='songs/')
     image = CloudinaryField('image')
     song_title = models.CharField(max_length=50)
     genre = models.CharField(max_length=50)
 
+
     def __str__(self):
         return str(self.song_title)
+
+    def get_audio(path_string):
+
+        os.chdir(path_string[0])
+    
+        for file in glob.glob('*.mp3'):
+            relative_path = str(path_string[0]).split('media/')
+            song = os.path.join(relative_path[1], file)
+
+        return song
     
     
     

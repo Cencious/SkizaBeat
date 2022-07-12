@@ -1,68 +1,37 @@
-{% extends 'iBeat/base.html' %} 
-{% load bootstrap4 %}
-{% load static%} 
-{% block content%}
-<div class="container" style="margin-top:7%">
-    {% if search %}
-    <h5 class="text-white">Found {{search.count}} Playlist{{search.count|pluralize}}</h5>
-    <div class="row">
-        <div class="col-md-4">
-            {% for lists in search %}
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{lists.name}}
-                        </h5>
-                        <p class="card-text">{{lists.description}}</p>
-                        <p class="card-text">Owner: <small class="text-muted">
-                            {{ lists.user.user.username|title }}</small></p>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-        {% else %}
-        <h4 class="text-white">Found 0 items of item searched for</h4>
-    </div>
+{%extends 'iBeat/base.html'%} 
+{% block content %}
+<div class="container mt-5">
+
+<div class="row">
+    {% if songs %}
+    <p>Found {{ songs|length }} of searched term {{message}}</p>
+    {% else %}
+    <p> Found 0 songs for the search term {{message}}</p>
     {% endif %}
+
 </div>
+
+<div class="row">
+
+{% if songs %}
+    {% for song in song %}
+    <div class="col-sm-6">
+        <img src="{{songs.song_image.url}}" height="200px" width="300px" alt="">
+        
+    </div>
+    <div class="col-md-4">
+        <h3><u>{{song.title}}</u></h3>
+        <h4>Description:</h4> <p>{{songs.description}}</p>
+        <p class="text-muted"> Developed by:  {{songs.profile}} </p>
+
+        <a href="{{songs.link}}" class="btn btn-info me-3" target="_blank">Project Link</a>
+        <a href="#" class="btn btn-info">Songs</a>
+        
+
+    </div>
+    {% endfor %}
+{% endif %}
+</div>
+<a href="{% url 'home' %}" class="btn btn-dark my-3">Go Back</a>
 </div>
 {% endblock %}
-
-
-
-<!-- <div class=" container p-5 text-center " style="margin-top:6%">
-    <div class="search">
-        {% if results %}
-        <p> We have found {{results|length}} playlists with the search term "{{message}}" in this playlist.</p>
-        {% else %}
-        <p> We have found 0 playlists for the search term "{{message}}" in this playlist.</p>
-        {% endif %} 
-        {% if results %}
-
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                {% for playlist in results %}
-
-                <div class="Playlist">
-                    <div class="card mb-2" style="width: 24rem;">
-
-                        <img class="card-img-top" src="{{playlist.image.url}}" alt="Card image cap">
-
-                        <div class="card-body">
-                            <h5 class="card-text">{{playlist.title}}</h5>
-                            <p><strong>Owner</strong>: {{playlist.user}}</p>
-                            <p class="ms-auto">Created {{playlist.post_date|timesince}} ago</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-
-        {% endfor %}
-    </div>
-    {% endif %}
-</div>
-</div> {% endblock %}  -->
-
-
