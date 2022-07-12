@@ -2,11 +2,7 @@
 # from users.forms import SignUpForm
 
 from django.shortcuts import redirect, render
-
-
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate,login
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserUpdateForm,ProfileUpdateForm,UserRegisterForm
@@ -45,8 +41,6 @@ def register(request):
 
 
 
-
-@login_required
 def profile(request):
 
     title = 'Profile'
@@ -69,4 +63,4 @@ def profile(request):
         'u_form': u_form,
         'p_form': p_form
     }
-    return render(request, 'profile.html',context)
+    return render(request, 'users/profile.html',context)

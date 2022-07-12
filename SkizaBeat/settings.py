@@ -45,9 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'iBeat',
-    'crispy_forms',
-    'bootstrap4',
     'cloudinary',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -97,21 +96,22 @@ WSGI_APPLICATION = 'SkizaBeat.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+     'default': {
 
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'skiza',
+        'NAME': 'skizaa',
         'USER': 'moringa',
         'PASSWORD':'Access'
 
     }
-}
+ }
 
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
+
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
@@ -126,18 +126,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        # 'rest_framework.authentication.BasicAuthentication',
-        # 'rest_framework.authentication.SessionAuthentication',
-        'knox.auth.TokenAuthentication',
-    ],
-    'DEFAULT_RENDERER_CLASSES': [
-        'rest_framework.renderers.TemplateHTMLRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer',
-    ]
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         # 'rest_framework.authentication.BasicAuthentication',
+#         # 'rest_framework.authentication.SessionAuthentication',
+#         'knox.auth.TokenAuthentication',
+#     ],
+#     'DEFAULT_RENDERER_CLASSES': [
+#         'rest_framework.renderers.TemplateHTMLRenderer',
+#         'rest_framework.renderers.BrowsableAPIRenderer',
+#     ]
 
-}
+# }
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
@@ -167,9 +167,9 @@ MEDIA_URL = '/media/'
 
 # adding config
 cloudinary.config( 
-  cloud_name = "dv6nw0q0h", 
-  api_key = "568678726622523", 
-  api_secret = "n8VasdJV4fqJYDes45AZMvBtNCA" 
+  cloud_name = "morces", 
+  api_key = "529525848425389", 
+  api_secret = "FauEpfLCvB93wAzeq1gElRAQYrk" 
 )
 
 
