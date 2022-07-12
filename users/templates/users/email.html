@@ -12,12 +12,14 @@
             <div class="col-11" id="col10">
                 <div class="text">Contact Us</div>
                  
-                    <form method="POST" action=".">
+                   <div class="col-md-12" id="email" style="border: 2px solid black;  width:70%; border-radius: 50px;">
+                    <form class="m-5" style="border-radius: 20px;" method="POST" action=".">
                         {% csrf_token %}
 
                         {{ form.as_p }} 
-                        <button>Submit</button>
+                        <button id="email1" class="btn btn-dark ms-5">Submit</button>
                     </form>
+                   </div>
             </div>
         </div>
     </div>
