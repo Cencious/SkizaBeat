@@ -14,11 +14,12 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 from pathlib import Path
-from decouple import config
+# from decouple import config
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -31,6 +32,11 @@ SECRET_KEY = 'django-insecure-(cx&2b$0%6i)n*sz0y)@e4^-i@ly0e^=c$hl9)s@c5*#m6z%7h
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = '737fffb5a15496'
+EMAIL_HOST_PASSWORD = '68001729c1cdd5'
+EMAIL_PORT = '2525'
 
 
 # Application definition

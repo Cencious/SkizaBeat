@@ -31,14 +31,17 @@ class Artist(models.Model):
         return self.name
 
 class Song(models.Model):
+
     title= models.TextField(null=True)
-    artist= models.TextField(null=True)
+    album=models.ForeignKey(Album, on_delete=models.CASCADE)
+    artist =models.CharField(max_length=100, null=True, blank=True)
     image= CloudinaryField('image')
-    audio_file = models.FileField(blank=True,null=True)
+    song = models.FileField(blank=True,null=True,upload_to='songs/')
     audio_link = models.CharField(max_length=200,blank=True,null=True)
     duration=models.CharField(max_length=20, null=True)
+    genre = models.CharField(max_length=50)
     paginate_by = 2
-
+ 
     def __str__(self):
         return str(self.title)
     
