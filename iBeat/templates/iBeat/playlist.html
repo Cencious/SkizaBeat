@@ -102,8 +102,8 @@
               {% if albums %}
               {% for album in albums %}
                   <div class="col-lg-3 col-md-4 col-sm-6">
-                      <div class="p-2">
-                          <a class="btn btn-dark" data-target="#s{{ song.id }}" data-toggle="modal" href="#s{{ song.id }}">
+                      <div class="mt-0">
+                          <a class="btn btn-dark " style="width: 150px; height:35px; text-align: justify; " data-target="#s{{ song.id }}" data-toggle="modal" href="#s{{ song.id }}">
                             {{album.album_title }}
                           </a>
                           <div class="modal fade" id="s{{ song.id }}" tabindex="-1" role="dialog"
