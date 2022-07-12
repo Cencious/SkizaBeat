@@ -39,8 +39,8 @@
                 <hr>
                 
                 <ol >
-                  {% for song in songs.all %}
-                  <li id="artistname" class="fw-bold mt-2">{{ song.artist.name }}</li>
+                  {% for song in songs %}
+                  <li id="artistname" class="fw-bold mt-2">{{ song.artist }}</li>
                   {% endfor %}
                 </ol>
                 <p></p>
@@ -57,8 +57,8 @@
                <h5 class="fw-bold text-muted">Trending</h5>
                <hr>
               <div class="row" >
-                {% for song in songs.all %}
-                    <div class="col-md-3 " style="display: inline;">
+                {% for song in songs %}
+                    <div class="col-md-3 " >
                       
                         <div class="p-2">
                             <a data-target="#s{{ song.id }}" data-toggle="modal" href="#s{{ song.id }}">
@@ -71,9 +71,9 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 style="font-weight: bolder;  color:black;"
-                                                class="modal-title">{{ song.song_title }}</h5>
-                                                <h5 style="font-weight: bolder;  color:black;"
-                                                class="modal-title">{{ song.genre }}</h5>
+                                                class="modal-title">{{ song.title }}</h5>
+                                                <!-- <h5 style="font-weight: bolder;  color:black;"
+                                                class="modal-title">{{ song.genre }}</h5> -->
 
                                         </div>
                                         <div class="container">
@@ -81,7 +81,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <audio preload="none" controls style="width: 100%">
-                                                <source src="media/songs/Dolly_Parton_-_9_To_5.mp3" type="audio/mpeg">
+                                                <source src="media/songs/Dolly_Parton_-_9_To_5.mp3" type="audio/mp3">
                                             </audio>
                                         </div>
                                         
@@ -90,14 +90,14 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <h6 class="text-center"><span style="font-weight:bolder; color: black">Song:</span> {{ song.song_title }}</h6>
+                            <h6 class="text-center"><span style="font-weight:bolder; color: black">Song:</span> {{ song.title }}</h6>
                             <br>
                         </div>
                     </div>
 
                
-                {% endfor %}
-            </div>
+                {% endfor %}  
+              </div>
             </div>
             
           </div>

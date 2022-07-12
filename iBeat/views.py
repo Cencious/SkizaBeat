@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
-from .models import Artist, Song,Album
+from .models import Song, Album, Artist
+from django.core.paginator import Paginator
 from django.contrib import messages
 
 # Create your views here.
@@ -8,9 +9,12 @@ def index(request):
 
 def home(request):
     songs = Song.objects.all()
-    # artists = Artist.objects.all()
-    # musics=list(Music.objects.all().values())
-    return render(request, 'iBeat/home.html', { 'songs':songs})
+    # paginator= Paginator(Song.objects.all(),1)
+    # page_number = request.GET.get('page')
+    # page_obj = paginator.get_page(page_number)
+    # context={"page_obj":page_obj}
+    
+    return render(request, 'iBeat/home.html', {'songs':songs})
 
 def discover(request):
     albums = Album.objects.all()
@@ -18,13 +22,14 @@ def discover(request):
     return render(request, 'iBeat/discover.html', { 'albums':albums})
 
 def dashboard(request):
-    # songs = Song.objects.all()
-    return render(request, 'iBeat/dashboard.html' )
+    songs = Song.objects.all()
+    return render(request, 'iBeat/dashboard.html', {'songs':songs} )
 
 def playlist(request):
-   songs = Song.objects
-   artists = Artist.objects
-   return render(request, 'iBeat/playlist.html', {'songs':songs, 'artists':artists})
+   songs = Song.objects.all()
+   artists = Artist.objects.all()
+   albums = Album.objects.all()
+   return render(request, 'iBeat/playlist.html', {'songs':songs, 'artists':artists, 'albums':albums})
 
 def search_playlist(request):
     # songs = Song.objects.all()
@@ -57,27 +62,27 @@ def search_playlist(request):
 #     message="You haven't searched for any term."  
 #     return render(request,'iBeat/search.html',{"message":message,"results":searched_users})
 
-def Albums(request):
-    albums = Album.objects
-    return render(request, 'Albums.html', {'Albums': albums})
+# def Albums(request):
+#     albums = Album.objects
+#     return render(request, 'Albums.html', {'Albums': albums})
 
 
-def Albums_songs(request, name):
-    musics = Song.objects.filter(album__album_title=name)
-    return render(request, 'Albums_songs.html', {'Musics': musics})
+# def Albums_songs(request, name):
+#     musics = Song.objects.filter(album__album_title=name)
+#     return render(request, 'Albums_songs.html', {'Musics': musics})
 
 
-def Song_player(request):
-    songs = Song.objects
-    artists = Artist.objects
-    return render(request, 'home.html', {'songs': songs})
+# def Song_player(request):
+#     songs = Song.objects
+#     artists = Artist.objects
+#     return render(request, 'home.html', {'songs': songs})
 
 
-def Artists(request):
-    artists = Artist.objects
-    return render(request, 'Artist.html', {'Artists': artists})
+# def Artists(request):
+#     artists = Artist.objects
+#     return render(request, 'Artist.html', {'Artists': artists})
 
 
-def Artist_songs(request, name):
-    artist = Song.objects.filter(artist__name=name)
-    return render(request, 'Artist_songs.html', {'Artist': artist})
+# def Artist_songs(request, name):
+#     artist = Song.objects.filter(artist__name=name)
+#     return render(request, 'Artist_songs.html', {'Artist': artist})

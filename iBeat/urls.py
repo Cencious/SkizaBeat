@@ -8,5 +8,5 @@ urlpatterns =[
     path('discover/',iBeat_views.discover, name='discover'),
     path('dashboard/',iBeat_views.dashboard, name='dashboard'),
     path('playlist/',iBeat_views.playlist, name='playlist'),
-    # path('search/', iBeat_views.search, name='search'),
+    path('search/', iBeat_views.search_playlist, name='search'),
 ]

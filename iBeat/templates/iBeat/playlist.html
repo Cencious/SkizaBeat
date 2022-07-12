@@ -51,10 +51,10 @@
           
             </div>
           
-            <!--   <img src="https://f4.bcbits.com/img/a3330461814_10.jpg" alt="" class="album__art"> -->
+            
             <div class="album__art"></div>
           
-            <img src="man.jpg" class="album__avatar">
+            <img src="/static/images/man.jpg" class="album__avatar">
           
             <div class="album__interactions">
               <svg enable-background="new 0 0 128 128" height="12px" id="Layer_1" version="1.1" viewBox="0 0 128 128" width="12px" class="album__like"><path d="M127,44.205c0-18.395-14.913-33.308-33.307-33.308c-12.979,0-24.199,7.441-29.692,18.276  c-5.497-10.835-16.714-18.274-29.694-18.274C15.912,10.898,1,25.81,1,44.205C1,79,56.879,117.104,64.001,117.104  C71.124,117.104,127,79.167,127,44.205z" fill="#232323"/></svg>
@@ -75,53 +75,51 @@
         <hr>
         <div class="col-6">
             <p class="text-muted mr-2" style="font-weight: bold;">SONGS</p>
-            {% for song in songs.all %}
+            
             <ul>
-              
-                <li>{{ song.song_title }}</li>
-                
+              {% for song in songs %}
+                <li>{{ song.title }}</li>
+                {% endfor %}
             </ul>
-            {% endfor %}
+            
         </div>
         <div class="col-4">
           
             <p class="text-muted" style="font-weight: bold;">ARTIST</p>
-            {% for song in songs.all %}
-            {% for artist in artists.all %}
-            <p>{{ song.artist.name }}</p>
-            {% endfor %}
-            {% endfor %}
+            <ul>
+                {% if songs%}
+                {% for song in songs %}
+                <li>{{ song.artist }}</li>
+                {% endfor %}
+                {% endif %}
+            </ul>
+            
         </div>
         <div class="col-2">
             <p class="text-muted" style="font-weight: bold;">ALBUM</p>
            
-            <!-- <div class="row pt-5">
-              {% for song in songs.all %}
+            <div class="row pt-5">
+              {% if albums %}
+              {% for album in albums %}
                   <div class="col-lg-3 col-md-4 col-sm-6">
                       <div class="p-2">
-                      
                           <a class="btn btn-dark" data-target="#s{{ song.id }}" data-toggle="modal" href="#s{{ song.id }}">
-                            See more...
+                            {{album.album_title }}
                           </a>
-                          
-                          
                           <div class="modal fade" id="s{{ song.id }}" tabindex="-1" role="dialog"
                                aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog" role="application">
                                   <div class="modal-content">
                                       <div class="modal-header">
                                           <h5 style="font-weight: bolder;  color:blueviolet;"
-                                              class="modal-title">{{ song.song_title }}</h5>
-                                              <h5 style="font-weight: bolder;  color:blueviolet;"
-                                              class="modal-title">{{ song.genre }}</h5>
-            
+                                              class="modal-title">{{ song.title }}</h5>
                                       </div>
                                       <div class="container">
                                           <img alt="" class="img-fluid rounded-circle" src="{{ song.image.url }}"/>
                                       </div>
                                       <div class="modal-body">
                                           <audio preload="none" controls style="width: 100%">
-                                              <source src="media/songs/Dolly_Parton_-_9_To_5.mp3" type="audio/mpeg">
+                                              <source src="media/songs/Dolly_Parton_-_9_To_5.mp3" type="audio/mp3">
                                           </audio>
                                       </div>
                                       
@@ -130,12 +128,15 @@
                           </div>
                       </div>
                       <div class="card-body">
-                          <h6 class="text-center" style="font-weight:bolder; color: black">{{ song.song_title }}</h6>
+                          <h6 class="text-center" style="font-weight:bolder; color: black">{{ song.title }}</h6>
                           <br>
                       </div>
                   </div>
               {% endfor %}
-            </div> -->
+              {% else %}
+              <p>No album found</p>
+              {% endif %}
+            </div>
         </div>
         <hr>
        
