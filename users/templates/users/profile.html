@@ -14,9 +14,10 @@
 
     <div class="col-md-12">
     <div class="content-section" style="display: inline;">
-        <div class="row">
-            <div class="col-4">
-        <div class="icard">
+        <div class="row" id="row11">
+          
+            <div class="col-6 m-4" id="row10">
+        <div class="icard mt-5" >
             <div class="icard-body">
               <div class="d-flex flex-column align-items-center text-center">
                 <img src="{{ user.profile.image.url }}" alt="Admin" class="rounded-circle" width="150">
@@ -24,7 +25,7 @@
                   <h4>{{ user.username }}</h4>
                   <p class="text-secondary mb-1">{{ user.email }}</p>
                   <p class="text-muted font-size-sm">Nairobi,Kenya</p>
-                  <button class="btn btn-outline-dark">Message</button>
+                  <button id="message" class="btn ">Message</button>
                 </div>
               </div>
             </div>
@@ -39,11 +40,12 @@
                 
             </div>
         </div> -->
-        <div class="col-4">
-        <form method="POST" enctype="multipart/form-data">
+        <div class="col-4 m-4 " id="row12">
+        <form method="POST" class="m-4" enctype="multipart/form-data">
             {% csrf_token %}
             <fieldset class="form-group">
                 <legend class="boarder-bottom mb-4">Account Info</legend>
+                <hr>
                 {{ u_form|crispy }}
                 {{ p_form|crispy }}
             </fieldset>
@@ -53,6 +55,7 @@
             </div>
         </form>
         </div>
+        <div class="col-1"></div>
         </div>
     </div>
 </div>

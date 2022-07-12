@@ -11,7 +11,7 @@
               <div class="text">Home</div>
               <div class="row">
                 <div class="col-7">
-              <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+              <div id="carouselExampleCaptions " class="carousel slide" data-bs-ride="carousel">
                
                 <div class="carousel-inner" style="height: 300px ; width: 600px;">
                   <div class="carousel-item active">
@@ -61,7 +61,8 @@
                       
                         <div class="p-2">
                             <a data-target="#s{{ song.id }}" data-toggle="modal" href="#s{{ song.id }}">
-                                <img alt="" class="img-thumbnail rounded-circle" src="{{ song.image.url }}"/>
+                              <img  id="podcaster1" src="{{ song.image.url }}" class="img-thumbnail ms-5" alt="...">
+                                
                             </a>
                             <!-- Modal -->
                             <div class="modal fade" id="s{{ song.id }}" tabindex="-1" role="dialog"
@@ -88,7 +89,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body ">
                             <h6 class="text-center"><span style="font-weight:bolder; color: black">Song:</span> {{ song.song_title }}</h6>
                             <br>
                         </div>
