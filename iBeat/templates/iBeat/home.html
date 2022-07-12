@@ -1,5 +1,6 @@
 {% extends 'iBeat/base.html' %}
-{%load static%}
+{% load music_tags %}
+{% load static %}
 {% block content%}
 
       <section id="home" class="home-section">
@@ -38,7 +39,7 @@
                 <hr>
                 
                 <ol >
-                  {% for song in songs.all %}
+                  {% for song in songs %}
                   <li id="artistname" class="fw-bold mt-2">{{ song.artist }}</li>
                   {% endfor %}
                 </ol>
@@ -71,9 +72,9 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 style="font-weight: bolder;  color:black;"
-                                                class="modal-title">{{ song.song_title }}</h5>
-                                                <h5 style="font-weight: bolder;  color:black;"
-                                                class="modal-title">{{ song.genre }}</h5>
+                                                class="modal-title">{{ song.title }}</h5>
+                                                <!-- <h5 style="font-weight: bolder;  color:black;"
+                                                class="modal-title">{{ song.genre }}</h5> -->
 
                                         </div>
                                         <div class="container">
@@ -89,20 +90,24 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body ">
-                            <h6 class="text-center"><span style="font-weight:bolder; color: black">Song:</span> {{ song.song_title }}</h6>
+                        <div class="card-body">
+                            <h6 class="text-center"><span style="font-weight:bolder; color: black">Song:</span> {{ song.title }}</h6>
                             <br>
                         </div>
                     </div>
 
                
-                {% endfor %}
-            </div>
+                {% endfor %}  
+              </div>
             </div>
             
           </div>
         </div>
     </section>
+    
+            
+
+
 {% endblock %}
 
     
