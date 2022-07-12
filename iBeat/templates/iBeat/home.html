@@ -10,7 +10,8 @@
             <div class="col-1"></div>
             <div class="col-11" id="col10">
               <div class="text">Home</div>
-              <div class="main1">
+              <div class="row">
+                <div class="col-7">
               <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                
                 <div class="carousel-inner" style="height: 300px ; width: 600px;">
@@ -30,19 +31,75 @@
                   </div>
                 </div>
               </div>
-              <div class=" m-5">
-                <p><i>" I was born with music inside me. Music was one of my parts. Like my ribs, my kidneys, my liver,
+              </div>
+             
+              
+              <div class="col-5">
+                <h5 class="fw-bold text-muted">Top artists</h5>
+                <hr>
+                
+                <ol >
+                  {% for song in songs.all %}
+                  <li id="artistname" class="fw-bold mt-2">{{ song.artist.name }}</li>
+                  {% endfor %}
+                </ol>
+                <p></p>
+                <!-- <p><i>" I was born with music inside me. Music was one of my parts. Like my ribs, my kidneys, my liver,
                    my heart. Like my blood. It was a force already within me when I arrived on the scene.
                     It was a necessity for me - like food or water. "
-                  </i> </p>
+                  </i> </p> -->
+                
               </div>
+              
+
               </div>
+              <br><br>
+               <h5 class="fw-bold text-muted">Trending</h5>
+               <hr>
+              <div class="row" >
+                {% for song in songs.all %}
+                    <div class="col-md-3 " style="display: inline;">
+                      
+                        <div class="p-2">
+                            <a data-target="#s{{ song.id }}" data-toggle="modal" href="#s{{ song.id }}">
+                                <img alt="" class="img-thumbnail rounded-circle" src="{{ song.image.url }}"/>
+                            </a>
+                            <!-- Modal -->
+                            <div class="modal fade" id="s{{ song.id }}" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="application">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 style="font-weight: bolder;  color:black;"
+                                                class="modal-title">{{ song.song_title }}</h5>
+                                                <h5 style="font-weight: bolder;  color:black;"
+                                                class="modal-title">{{ song.genre }}</h5>
+
+                                        </div>
+                                        <div class="container">
+                                            <img alt="" class="img-fluid rounded-circle" style="height:200px ; width:200px ;" src="{{ song.image.url }}"/>
+                                        </div>
+                                        <div class="modal-body">
+                                            <audio preload="none" controls style="width: 100%">
+                                                <source src="media/songs/Dolly_Parton_-_9_To_5.mp3" type="audio/mpeg">
+                                            </audio>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="text-center"><span style="font-weight:bolder; color: black">Song:</span> {{ song.song_title }}</h6>
+                            <br>
+                        </div>
+                    </div>
+
+               
+                {% endfor %}
+            </div>
             </div>
             
-           
-          </div>
-          
-          
           </div>
         </div>
     </section>

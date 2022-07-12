@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from .models import Song,Album
+from .models import Artist, Song,Album
 from django.contrib import messages
 
 # Create your views here.
@@ -22,8 +22,9 @@ def dashboard(request):
     return render(request, 'iBeat/dashboard.html' )
 
 def playlist(request):
-    # all_songs = Song.objects.all()
-    return render(request, 'iBeat/playlist.html')
+   songs = Song.objects
+   artists = Artist.objects
+   return render(request, 'iBeat/playlist.html', {'songs':songs, 'artists':artists})
 
 def search_playlist(request):
     # songs = Song.objects.all()
@@ -55,3 +56,28 @@ def search_playlist(request):
 #   else:
 #     message="You haven't searched for any term."  
 #     return render(request,'iBeat/search.html',{"message":message,"results":searched_users})
+
+def Albums(request):
+    albums = Album.objects
+    return render(request, 'Albums.html', {'Albums': albums})
+
+
+def Albums_songs(request, name):
+    musics = Song.objects.filter(album__album_title=name)
+    return render(request, 'Albums_songs.html', {'Musics': musics})
+
+
+def Song_player(request):
+    songs = Song.objects
+    artists = Artist.objects
+    return render(request, 'home.html', {'songs': songs})
+
+
+def Artists(request):
+    artists = Artist.objects
+    return render(request, 'Artist.html', {'Artists': artists})
+
+
+def Artist_songs(request, name):
+    artist = Song.objects.filter(artist__name=name)
+    return render(request, 'Artist_songs.html', {'Artist': artist})

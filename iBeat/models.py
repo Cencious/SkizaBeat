@@ -21,7 +21,7 @@ class Album(models.Model):
     album_image = models.FileField(upload_to='album_logo/', null=True)
 
     def __str__(self):
-        return self.album_title
+        return str(self.album_title)
 
 class Artist(models.Model):
     name = models.CharField(max_length=60, null=True)
@@ -33,25 +33,15 @@ class Artist(models.Model):
 class Song(models.Model):
     album=models.ForeignKey(Album, on_delete=models.CASCADE)
     artist =models.ForeignKey(Artist, on_delete=models.CASCADE)
-    song = models.FileField(upload_to='song/',validators=[validate_is_audio])
-    time_length=models.DecimalField(max_digits=20, decimal_places=2,blank=True, null=True)
+    song = models.FileField(upload_to='songs/')
     image = CloudinaryField('image')
     song_title = models.CharField(max_length=50)
     genre = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.song_title
-
-#     def save(self,*args, **kwargs):
-#         if not self.time_length:
-#             # logic for getting length of audio
-#             audio_length=get_audio_length(self.audio_file)
-#             self.time_length =f'{audio_length:.2f}'
-
-#         return super().save(*args, **kwargs)
-
-#     class META:
-#         ordering="id"
+        return str(self.song_title)
+    
+    
     
 # class Music(models.Model):
 #     title=models.CharField(max_length=500)
