@@ -1,21 +1,18 @@
-# Nextdoor_app
+# SkizaBeat
 
 ## Description 
-A web application that allows you to be in the loop about everything happening in your neighborhood. From contact information of different handyman to meeting announcements or even alerts.
+A web application  where a user can  listen to the track they want at any moment. SkizaBeat gives you that platform to enjoy every moment of your life. Music is life .
 
-## By Caren Chepkorir
 
- <img src="static/screenshot3.png">
 
 ## BDD
 A user of the application should be able to:
 * Sign in with the application to start using.
-* Set up a profile about me and a general location and my      neighborhood name.
-* Find a list of different businesses in my neighborhood.
-* Find Contact Information for the health department and Police authorities near my neighborhood.
-* Create Posts that will be visible to everyone in my neighborhood.
-* Change My neighborhood when I decide to move out.
-* Only view details of a single neighborhood.
+* Set up a profile and a bio.
+* Find a list of different music genres.
+* Leave their Contact Information via email.
+* Find a list of music recommendations 
+
 
 ## Getting Started
   To get a copy of the project up and running on your local machine for development and testing purposes, clone this repository into a virtual environment and install the package manager, pip. 
@@ -29,19 +26,21 @@ Use the package manager pip to install all project requirements.
  * Django 
  * Python3 
  * Bootstrap4
- * Html
- * JavaScript
+ * Angular
+ * cloudinary
+ * Heroku
+
 
 ## Installing
 To get a development env running, use the .env.example file to create a .env file with appropriate values
 
-## Running the tests
-Run automated tests for this system
-
-  (virtual) $ python3 manage.py test instagram
 
 ## Deployment
     With all environment variables changed to suit your local copy of this repository, deploy the application to [Heroku] to see it live or simply run it locally (virtual) $ python3.8 manage.py runserver
 
 
 ## License
+
+MIT License
+
+Copyright (c) 2022 SkizaBeat2022

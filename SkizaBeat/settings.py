@@ -14,6 +14,9 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 from pathlib import Path
+import django_heroku
+import dj_database_url
+from decouple import config,Csv
 # from decouple import config
 
 
@@ -26,12 +29,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(cx&2b$0%6i)n*sz0y)@e4^-i@ly0e^=c$hl9)s@c5*#m6z%7h'
+# SECRET_KEY = 'django-insecure-(cx&2b$0%6i)n*sz0y)@e4^-i@ly0e^=c$hl9)s@c5*#m6z%7h'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 EMAIL_HOST = 'smtp.mailtrap.io'
 EMAIL_HOST_USER = '737fffb5a15496'
@@ -65,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
@@ -98,20 +102,49 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'SkizaBeat.wsgi.application'
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-     'default': {
+# DATABASES = {
+#      'default': {
 
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ibeat',
-        'USER': 'kakan',
-        'PASSWORD':'Abiathar2022'
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'ibeat',
+#         'USER': 'kakan',
+#         'PASSWORD':'Abiathar2022'
 
-    }
- }
+#     }
+#  }
+MODE=config("MODE", default="dev")
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
+# development
+if config('MODE')=="dev":
+   DATABASES = {
+       'default': {
+           'ENGINE': 'django.db.backends.postgresql_psycopg2',
+           'NAME': config('DB_NAME'),
+           'USER': config('DB_USER'),
+           'PASSWORD': config('DB_PASSWORD'),
+           'HOST': config('DB_HOST'),
+           'PORT': '',
+       }
+       
+   }
+# production
+else:
+   DATABASES = {
+       'default': dj_database_url.config(
+           default=config('DATABASE_URL')
+       )
+   }
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 
 # Password validation
@@ -189,6 +222,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'dashboard'
 LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = 'login'
+
+
+# Configure Django App for Heroku.
+django_heroku.settings(locals())

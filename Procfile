@@ -1,0 +1,1 @@
+web: gunicorn SkizaBeat.wsgi --log-file -
