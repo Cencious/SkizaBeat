@@ -12,7 +12,7 @@
               <div class="text">Home</div>
               <div class="row">
                 <div class="col-7">
-              <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+              <div id="carouselExampleCaptions " class="carousel slide" data-bs-ride="carousel">
                
                 <div class="carousel-inner" style="height: 300px ; width: 600px;">
                   <div class="carousel-item active">
@@ -58,11 +58,12 @@
                <hr>
               <div class="row" >
                 {% for song in songs %}
-                    <div class="col-md-3 " >
+                    <div class="col-md-3 " style="display: inline;">
                       
                         <div class="p-2">
                             <a data-target="#s{{ song.id }}" data-toggle="modal" href="#s{{ song.id }}">
-                                <img alt="" class="img-thumbnail rounded-circle" src="{{ song.image.url }}"/>
+                              <img  id="podcaster1" src="{{ song.image.url }}" class="img-thumbnail ms-5" alt="...">
+                                
                             </a>
                             <!-- Modal -->
                             <div class="modal fade" id="s{{ song.id }}" tabindex="-1" role="dialog"
@@ -81,7 +82,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <audio preload="none" controls style="width: 100%">
-                                                <source src="media/songs/Dolly_Parton_-_9_To_5.mp3" type="audio/mp3">
+                                                <source src="{% if song.song %} {{ song.song.url }} {% endif %}" type="audio/mp3">
                                             </audio>
                                         </div>
                                         

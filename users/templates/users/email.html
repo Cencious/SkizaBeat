@@ -1,0 +1,25 @@
+{% extends 'iBeat/base.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<section id="profile" class="home-section">
+    <div class="container-fluid" id="divided">
+        <div class="row" >
+            <div class="col-1"></div>
+            <div class="col-11" id="col10">
+                <div class="text">Contact Us</div>
+                 
+                    <form method="POST" action=".">
+                        {% csrf_token %}
+
+                        {{ form.as_p }} 
+                        <button>Submit</button>
+                    </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
