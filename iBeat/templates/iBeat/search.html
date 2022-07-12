@@ -1,0 +1,68 @@
+{% extends 'iBeat/base.html' %} 
+{% load bootstrap4 %}
+{% load static%} 
+{% block content%}
+<div class="container" style="margin-top:7%">
+    {% if search %}
+    <h5 class="text-white">Found {{search.count}} Playlist{{search.count|pluralize}}</h5>
+    <div class="row">
+        <div class="col-md-4">
+            {% for lists in search %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{lists.name}}
+                        </h5>
+                        <p class="card-text">{{lists.description}}</p>
+                        <p class="card-text">Owner: <small class="text-muted">
+                            {{ lists.user.user.username|title }}</small></p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <h4 class="text-white">Found 0 items of item searched for</h4>
+    </div>
+    {% endif %}
+</div>
+</div>
+{% endblock %}
+
+
+
+<!-- <div class=" container p-5 text-center " style="margin-top:6%">
+    <div class="search">
+        {% if results %}
+        <p> We have found {{results|length}} playlists with the search term "{{message}}" in this playlist.</p>
+        {% else %}
+        <p> We have found 0 playlists for the search term "{{message}}" in this playlist.</p>
+        {% endif %} 
+        {% if results %}
+
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                {% for playlist in results %}
+
+                <div class="Playlist">
+                    <div class="card mb-2" style="width: 24rem;">
+
+                        <img class="card-img-top" src="{{playlist.image.url}}" alt="Card image cap">
+
+                        <div class="card-body">
+                            <h5 class="card-text">{{playlist.title}}</h5>
+                            <p><strong>Owner</strong>: {{playlist.user}}</p>
+                            <p class="ms-auto">Created {{playlist.post_date|timesince}} ago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+</div> {% endblock %}  -->
+
+
