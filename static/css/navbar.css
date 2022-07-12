@@ -261,7 +261,7 @@
 }
 #card1{
   width: 300px;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 #recently{
   background-color: #050505;
@@ -271,6 +271,11 @@
   border-radius: 50%;
   height: 60px;
   width: 60px;
+}
+#podcaster1{
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
 }
 .podcaster{
   display: flex;
@@ -282,4 +287,63 @@
   .sidebar li .tooltip{
     display: none;
   }
+}
+
+#artistname:hover{
+  background-color: whitesmoke;
+  font-size: 20px;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.22);
+  border-top: 3px solid rgba(0, 0, 0, 0.22);
+  
+
+
+}
+#row10{
+  height: 450px;
+  width: 450px;
+  border-radius: 50%;
+  background: #000000;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+color: white;
+}
+#row12{
+  overflow: hidden;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+
+}
+/* #row11{
+  border: 2px solid rgb(0, 255, 42);
+  width: auto;
+} */
+#message{
+  background-color: white;
+}
+#message:hover{
+  margin-top: 3%;
+}
+#discover{
+  box-shadow: rgba(0, 0, 0, 0.4) -5px 5px, rgba(0, 0, 0, 0.3) -10px 10px, rgba(0, 0, 0, 0.2) -15px 15px, rgba(0, 0, 0, 0.1) -20px 20px, rgba(0, 0, 0, 0.05) -25px 25px;
+}
+#card10{
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+#email{
+  background: #232526;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #414345, #0d0d0e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+   color: white;  
+  font-weight: bold;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+#email1{
+  background-color: white;
+  color: black;
+  font-weight: bold;
+}
+#email1:hover{
+  background-color: rgb(184, 182, 182);
+  color: black;
+  font-weight: bold;
+  margin-top: 2%;
 }
