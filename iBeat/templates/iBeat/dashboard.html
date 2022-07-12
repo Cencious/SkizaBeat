@@ -1,0 +1,128 @@
+{% extends 'iBeat/base.html' %}
+{%load static%}
+{% block content%}
+<section id="dashboard" class="home-section">
+    <div class="container-fluid" >
+      <div class="row"  >
+        <div class="col-1" id="divided"></div>
+        <div class="col-11" id="divided">
+    
+        <div class="text">Dashboard</div>
+            <p class="text-muted" style="font-weight: bold;">RECENTLY PLAYED</p>
+            <div class="all-cards" style="display: flex; justify-content: space-around;">
+              <div id="card1" class="card">
+                <img id="image" src="/static/images/reggae.jpg" style="width: 100%; height: 80%;" class="img-fluid" alt="...">
+                <div class="card-body">
+                  <p class="card-text">
+                    Nobody can stop Reggae
+                  </p>
+                  
+                   <br>
+                  <a href="https://www.musicgenreslist.com/" target="_blank" id="recently" class="btn btn-dark">View</a>
+                </div>
+              </div>
+              <div id="card1" class="card">
+                <img id="image" src="/static/images/rnbs.jpg" style="width: 100%; height: 80%;" class="img-fluid" alt="...">
+                <div class="card-body">
+                  <p class="card-text">
+                    RnBs
+                  </p>
+                  
+                  <br>
+                  <a href="https://www.musicgenreslist.com/" target="_blank" id="recently" class="btn btn-dark">View</a>
+                </div>
+              </div>
+              <div id="card1" class="card">
+                <img id="image" src="/static/images/bongo.jpg" style="width: 100%; height: 80%;" class="img-fluid" alt="...">
+                <div class="card-body">
+                  <p class="card-text">
+                   Best of Bongo Flava
+                  </p>
+                  
+                  <br> <br>
+                  <a href="https://www.musicgenreslist.com/" target="_blank" id="recently" class="btn btn-dark">View</a>
+                </div>
+              </div>
+              <!-- <div id="card1" class="card">
+                
+                <div class="card-body">
+                  
+                  <p class="card-text">
+                      Click here for reggae songs
+                      <img id="image" src="/static/images/lady.jpg" class="img-fluid" alt="...">
+                    <a href="https://www.allmusic.com/genre/reggae-ma0000002820/songs?1657647380074" target="_blank" id="recently" class="btn btn-dark">View</a>
+                  </p>
+                  <p class="card-text">
+                    Click here for riddims
+                    <img id="image" src="/static/images/lady.jpg" class="img-fluid" alt="...">
+                  <a href="https://soundcloud.com/djeasyyy/2019-2021-best-of-reggae-riddims-mix-chris-martinjah-curebusyturbulencesizzlaromain-virgoalain" target="_blank" id="recently" class="btn btn-dark">View</a>
+                </p>
+                  
+                  <br> <br>
+                  
+                </div>
+              </div>
+              <div id="card1" class="card">
+                <div class="card-body">
+                  <p class="card-text">
+                    Listen and download the latest bongo music here. <br> 
+                    <a href="https://mdundo.com/genres/246" target="_blank" id="recently" class="btn btn-dark">View</a>
+                  </p>
+                  <p class="card-text">
+                    Not a bongo fun? Worry not. We still got you covered with RnBs.
+                    <a href="https://www.mixcloud.com/discover/rnb-music/" target="_blank" id="recently" class="btn btn-dark">View</a>
+                  </p>
+                  <p class="card-text">
+                    HipHop music lovers don't want to be left behind either.
+                    <a href="https://www.hotnewhiphop.com/songs/" target="_blank" id="recently" class="btn btn-dark">View</a>
+                  </p>
+                  <br>
+                  
+                </div>
+              </div> -->
+              
+            </div>
+            
+    
+       </div>
+      </div>
+    
+      <br>
+      <div class="row" id="divided">
+        <div class="col-1"></div>
+        <div class="col-6" id="col5">
+          <p class="text-muted" style="font-weight: bold;">MOST PLAYED</p>
+          <hr>
+          <div class="row">
+            <div class="col-6">
+              <p>Islands In The Stream</p>
+              
+            </div>
+            <div class="col-4">
+              <p class="text-muted">Doly Parton</p>
+            </div>
+            <div class="col-2">
+              08:30
+            </div>
+          </div>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-3" id="col6">
+          <p class="text-muted" style="font-weight: bold;">Artists</p>
+          <hr>
+          <div class="podcaster">
+          <img id="podcaster" src="/static/images/man.jpg" class="img-thumbnail" alt="...">
+          <p class="text-muted mt-3">Doly Parton</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>
+    
+    {% endblock content%} 
+    
+    
+    
+    
+    
+    

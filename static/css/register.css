@@ -1,0 +1,18 @@
+.content-section{
+
+    margin-left: 10%;
+    color: white;
+    background-color: rgb(53, 52, 52);
+}
+.forms{
+    padding: 10%;
+
+}
+
+
+#loginarea{
+    background-image: url("../images/undraw_audio_player_re_cl20.svg");
+    border-radius: 100px;
+    
+}
+

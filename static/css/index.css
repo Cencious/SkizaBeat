@@ -1,0 +1,70 @@
+
+
+
+#col1{
+
+    height: 50px;
+}
+#col2{
+    height: 50px;
+    display: flex;
+}
+#nav{
+    height: 70px;
+}
+#list{
+    display: flex;
+
+}
+.signup{
+    list-style-type: none;
+    margin-left: 15%;
+    border: 2px solid black;
+    border-radius: 15px;
+    width: 160px;
+    height: 30px;
+    background-color: black;
+
+}
+.login{
+    list-style-type: none;
+    margin-left: 15%;
+    border: 2px solid black;
+    width: 160px;
+    border-radius: 15px;
+    height: 30px;
+
+}
+.log{
+    padding-left: 25%;
+    padding-top: 10%;
+    color: white;
+    text-decoration: none;
+   
+
+}
+.log1{
+    padding-left: 25%;
+    text-decoration: none;
+    color: black;
+}
+
+#col3, #col4, #col5{
+    /* border: 2px solid red; */
+    height: 440px;
+}
+#desc{
+    /* border: 2px solid black; */
+    margin-top: 3%;
+    height: 450px;
+}
+.description{
+    margin-top:17%;
+    color: black;
+    font-weight: bold;
+
+}
+.p1{
+    font-weight: bold;
+    color: grey;
+}

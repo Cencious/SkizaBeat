@@ -1,0 +1,37 @@
+{%extends 'iBeat/base.html'%} 
+{% block content %}
+<div class="container mt-5">
+
+<div class="row">
+    {% if songs %}
+    <p>Found {{ songs|length }} of searched term {{message}}</p>
+    {% else %}
+    <p> Found 0 songs for the search term {{message}}</p>
+    {% endif %}
+
+</div>
+
+<div class="row">
+
+{% if songs %}
+    {% for song in song %}
+    <div class="col-sm-6">
+        <img src="{{songs.song_image.url}}" height="200px" width="300px" alt="">
+        
+    </div>
+    <div class="col-md-4">
+        <h3><u>{{song.title}}</u></h3>
+        <h4>Description:</h4> <p>{{songs.description}}</p>
+        <p class="text-muted"> Developed by:  {{songs.profile}} </p>
+
+        <a href="{{songs.link}}" class="btn btn-info me-3" target="_blank">Project Link</a>
+        <a href="#" class="btn btn-info">Songs</a>
+        
+
+    </div>
+    {% endfor %}
+{% endif %}
+</div>
+<a href="{% url 'home' %}" class="btn btn-dark my-3">Go Back</a>
+</div>
+{% endblock %}
