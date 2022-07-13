@@ -31,6 +31,16 @@ def playlist(request):
    albums = Album.objects.all()
    return render(request, 'iBeat/playlist.html', {'songs':songs, 'artists':artists, 'albums':albums})
 
+def search_results(request):
+    if 'song' in request.GET and request.GET["song"]:
+        search_term = request.GET.get("song")
+        searched_songs = Song.search_by_artist(search_term)
+        message = f"{search_term}"
+        return render(request, 'iBeat/search.html',{"message":message,"songs": searched_songs})
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'iBeat/search.html',{"message":message})
+
 
     
 

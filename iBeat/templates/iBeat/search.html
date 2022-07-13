@@ -1,34 +1,31 @@
-{%extends 'iBeat/base.html'%} 
+{% extends 'iBeat/base.html' %}
 {% block content %}
-<div class="container mt-5">
-
+<div class="container">
 <div class="row">
     {% if songs %}
-    <p>Found {{ songs|length }} of searched term {{message}}</p>
+    <p>Found {{ songs.count }} of searched term </p>
+    <p>{{message}}</p>
     {% else %}
-    <p> Found 0 songs for the search term {{message}}</p>
+    <p> Found 0 songs for the search term</p>
+    <p>{{message}}</p>
     {% endif %}
-
 </div>
-
 <div class="row">
-
 {% if songs %}
-    {% for song in song %}
-    <div class="col-sm-6">
-        <img src="{{songs.song_image.url}}" height="200px" width="300px" alt="">
-        
+    {% for song in songs %}
+    <div class="col-sm-2">
     </div>
-    <div class="col-md-4">
-        <h3><u>{{song.title}}</u></h3>
-        <h4>Description:</h4> <p>{{songs.description}}</p>
-        <p class="text-muted"> Developed by:  {{songs.profile}} </p>
-
-        <a href="{{songs.link}}" class="btn btn-info me-3" target="_blank">Project Link</a>
-        <a href="#" class="btn btn-info">Songs</a>
-        
-
+    <div class="col-md-8">
+        <h3><u>{{song.song_title}}</u></h3>
+        <p>artist: {{song.artist}}</p>
+        <p>albums: {{song.album}}</p>
+        <!-- <p>song: {{song.song.url}}</p> -->
+        <audio preload="none" controls style="width: 100%">
+            <source src="{% if song.song %} {{ song.song.url }} {% endif %}" type="audio/mp3">
+        </audio>
     </div>
+    <div class="col-md-2">
+        </div>
     {% endfor %}
 {% endif %}
 </div>
