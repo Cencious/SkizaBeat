@@ -9,4 +9,5 @@ urlpatterns =[
     path('dashboard/',iBeat_views.dashboard, name='dashboard'),
     path('playlist/',iBeat_views.playlist, name='playlist'),
     path('search/', iBeat_views.search_results, name='search'),
+    path('upload/', iBeat_views.Upload, name='upload'),
 ]

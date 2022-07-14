@@ -10,6 +10,14 @@
             <div class="col-1"></div>
             <div class="col-11" id="col10">
               <div class="text">Home</div>
+              <form role="search" action="{% url 'search' %}">
+                <div class="form-group d-flex">
+                    <input style="width:30% ;" type="text" class="form-control" placeholder="Search by artist" name="song">
+                    <br>
+                    <button class="btn btn-dark pl-2" type="submit"> Search </button>
+                </div>
+                </form>
+                <br>
               <div class="row">
                 <div class="col-7">
               <div id="carouselExampleCaptions " class="carousel slide" data-bs-ride="carousel">
@@ -40,7 +48,7 @@
                 
                 <ol >
                   {% for song in songs %}
-                  <li id="artistname" class="fw-bold mt-2">{{ song.artist }}</li>
+                  <li id="artistname" class="fw-bold mt-2">{{ song.singer.name }}</li>
                   {% endfor %}
                 </ol>
                 <p></p>
@@ -66,15 +74,16 @@
                                 
                             </a>
                             <!-- Modal -->
-                            <div class="modal fade" id="s{{ song.id }}" tabindex="-1" role="dialog"
+                            <div class="modal" data-backdrop="false" id="s{{ song.id }}" tabindex="-1" role="dialog"
                                  aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="application">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 style="font-weight: bolder;  color:black;"
                                                 class="modal-title">{{ song.title }}</h5>
-                                                <!-- <h5 style="font-weight: bolder;  color:black;"
-                                                class="modal-title">{{ song.genre }}</h5> -->
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span>
+                                                </button>
 
                                         </div>
                                         <div class="container">
@@ -103,12 +112,7 @@
             
           </div>
         </div>
-        <form role="search" action="{% url 'search' %}">
-          <div class="form-group ">
-              <input type="text" class="form-control" placeholder="Search by artist" name="song">
-              <button class="btn btn-dark" type="submit"> Search </button>
-          </div>
-          </form>
+       
     </section>
     
             

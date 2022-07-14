@@ -8,14 +8,15 @@
     </div>
     <ul class="nav-list">
       <li>
-        <a href="{% url 'search' %}">
+        <a href="">
           <i class='bx bx-search' ></i>
-          <span class="links_name">Search</span>
+          <span class="links_name"></span>
   
         </a>
         <span class="tooltip">Search</span>
           
       </li>
+      <br>
       <li>
         <a href="{% url 'dashboard' %}">
           <i class='bx bx-grid-alt'></i>
@@ -51,7 +52,13 @@
        </a>
        <span class="tooltip">Profile</span>
      </li>
-     
+     <li>
+      <a href="{% url 'upload' %}">
+        <i class='bx bx-plus-circle'></i>
+        <span class="links_name">Upload</span>
+      </a>
+      <span class="tooltip">Upload</span>
+    </li>
      
      <li class="profile">
          <div class="profile-details">
@@ -61,9 +68,11 @@
              <div class="copyright">copyright</div>
            </div>
          </div>
-         <a href=""><i class='bx bx-log-out' id="logout" ></i></a>
+         <a href="{% url 'logout' %}"><i class='bx bx-log-out' id="logout" ></i></a>
          
-     </li>
+      </li>
+   
+        
      <li>
       <a href="{% url 'email' %}">
         <i class='bx bxs-envelope'></i>
@@ -71,5 +80,13 @@
       </a>
       <span class="tooltip">email</span>
     </li>
+
+    <li >
+            
+      <a  href="{% url 'logout' %}">
+        <i class='bx bxs-right-arrow-square'></i><span class="links_name">Logout</span></a>
+        <span class="tooltip">Logout</span>
+    </li>
+
     </ul>
   </div>

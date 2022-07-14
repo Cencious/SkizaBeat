@@ -1,34 +1,54 @@
 {% extends 'iBeat/base.html' %}
+{% load music_tags %}
+{% load static %}
 {% block content %}
-<div class="container">
-<div class="row">
+
+          
+<section id="profile" class="home-section">    
+	<div class="container-fluid" id="divided">
+	  <div class="row" >
+		<div class="col-1"></div>
+		<div class="col-11">
+		  <div class="text"> <p><span class = "fw-bold"> Artist: </span>{{ song.singer.name }}</p></div>
+    <div class="container">
+    <div class="row">
+		<div class="col-12">
+        {% if songs %}
+        <p>Found {{ songs.count }} song(s) </p>
+        <p>{{message}}</p>
+        {% else %}
+        <p> Found 0 songs  </p>
+        <p>{{message}}</p>
+        {% endif %}
+		</div>
+    </div>
+    <div class="row">
     {% if songs %}
-    <p>Found {{ songs.count }} of searched term </p>
-    <p>{{message}}</p>
-    {% else %}
-    <p> Found 0 songs for the search term</p>
-    <p>{{message}}</p>
-    {% endif %}
-</div>
-<div class="row">
-{% if songs %}
-    {% for song in songs %}
-    <div class="col-sm-2">
-    </div>
-    <div class="col-md-8">
-        <h3><u>{{song.song_title}}</u></h3>
-        <p>artist: {{song.artist}}</p>
-        <p>albums: {{song.album}}</p>
-        <!-- <p>song: {{song.song.url}}</p> -->
-        <audio preload="none" controls style="width: 100%">
-            <source src="{% if song.song %} {{ song.song.url }} {% endif %}" type="audio/mp3">
-        </audio>
-    </div>
-    <div class="col-md-2">
+        {% for song in songs %}
+        <div class="col-md-3">
+            <div class="container">
+                <img alt="" class="img-fluid rounded-circle" style="height:200px ; width:200px ;" src="{{ song.image.url }}"/>
+            </div>
         </div>
-    {% endfor %}
-{% endif %}
+        <div class="col-md-6">
+            <h3><u>{{song.song_title}}</u></h3>
+            <p><span class = "fw-bold"> Artist: </span>{{ song.singer.name }}</p>
+            <p><span class = "fw-bold"> Album: </span> {{song.album}}</p>
+            <!-- <p>song: {{song.song.url}}</p> -->
+            <audio preload="none" controls style="width: 100%">
+                <source src="{% if song.song %} {{ song.song.url }} {% endif %}" type="audio/mp3">
+            </audio>
+        </div>
+        <div class="col-md-2">
+			<a href="{% url 'home' %}" class="btn btn-dark my-3">Go Back</a>
+        </div>
+        {% endfor %}
+    {% endif %}
+    </div>
+   
+    </div>
 </div>
-<a href="{% url 'home' %}" class="btn btn-dark my-3">Go Back</a>
 </div>
-{% endblock %}
+</div>
+</section>
+{% endblock content %}

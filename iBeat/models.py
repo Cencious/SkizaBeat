@@ -33,8 +33,8 @@ class Artist(models.Model):
 class Song(models.Model):
 
     title= models.TextField(null=True)
-    album=models.ForeignKey(Album, on_delete=models.CASCADE)
-    artist =models.ForeignKey(Artist, on_delete=models.CASCADE)
+    album=models.ForeignKey(Album, on_delete=models.CASCADE, null=True)
+    singer =models.ForeignKey(Artist, on_delete=models.CASCADE, null=True)    
     image= CloudinaryField('image')
     song = models.FileField(blank=True,null=True,upload_to='songs/')
     audio_link = models.CharField(max_length=200,blank=True,null=True)
@@ -46,8 +46,8 @@ class Song(models.Model):
         return str(self.title)
 
     @classmethod
-    def search_by_artist(cls,search_term):
-        title = cls.objects.filter(artist__name__icontains=search_term)
+    def search_by_title(cls,search_term):
+        title = cls.objects.filter(title__icontains=search_term)
         return title
     
     

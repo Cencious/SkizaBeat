@@ -95,9 +95,10 @@
             </ul>
             
         </div>
-        <div class="col-2">
+        <div class="col-2 d-block">
             <p class="text-muted" style="font-weight: bold;">ALBUM</p>
            
+          
             <div class="row pt-5">
               {% if albums %}
               {% for album in albums %}
@@ -106,23 +107,24 @@
                           <a class="btn btn-dark " style="width: 150px; height:35px; text-align: justify; " data-target="#s{{ song.id }}" data-toggle="modal" href="#s{{ song.id }}">
                             {{album.album_title }}
                           </a>
-                          <div class="modal fade" id="s{{ song.id }}" tabindex="-1" role="dialog"
+                          <div class="modal" data-backdrop="false" id="s{{ song.id }}" tabindex="-1" role="dialog"
                                aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog" role="application">
                                   <div class="modal-content">
                                       <div class="modal-header">
-                                          <h5 style="font-weight: bolder;  color:blueviolet;"
+                                          <h5 style="font-weight: bolder;  color:rgb(16, 15, 17);"
                                               class="modal-title">{{ song.title }}</h5>
                                       </div>
                                       <div class="container">
                                           <img alt="" class="img-fluid rounded-circle" src="{{ song.image.url }}"/>
                                       </div>
+                                      {% for song in songs %}
                                       <div class="modal-body">
-                                          <audio preload="none" controls style="width: 100%">
-                                              <source src="media/songs/Dolly_Parton_-_9_To_5.mp3" type="audio/mp3">
-                                          </audio>
-                                      </div>
-                                      
+                                        <audio preload="none" controls style="width: 100%">
+                                            <source src="{% if song.song %} {{ song.song.url }} {% endif %}" type="audio/mp3">
+                                        </audio>
+                                    </div>
+                                    {% endfor %} 
                                   </div>
                               </div>
                           </div>
@@ -137,6 +139,7 @@
               <p>No album found</p>
               {% endif %}
             </div>
+           
         </div>
         <hr>
        

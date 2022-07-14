@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from .models import Song, Album, Artist
+from .forms import UploadMusic
 # from django.core.paginator import Paginator
 # from django.contrib import messages
 
@@ -34,12 +35,39 @@ def playlist(request):
 def search_results(request):
     if 'song' in request.GET and request.GET["song"]:
         search_term = request.GET.get("song")
-        searched_songs = Song.search_by_artist(search_term)
+        searched_songs = Song.search_by_title(search_term)
         message = f"{search_term}"
         return render(request, 'iBeat/search.html',{"message":message,"songs": searched_songs})
     else:
         message = "You haven't searched for any term"
         return render(request, 'iBeat/search.html',{"message":message})
+
+def Upload(request):
+    form = UploadMusic()
+    if request.POST:
+        form = UploadMusic(request.POST, request.FILES)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            singer = form.cleaned_data.get('Singer_name')
+            if singer:
+                artist_name = Artist.objects.get_or_create(name=singer)
+                instance.singer = artist_name[0]
+                instance.save()
+                return redirect('home')
+            else:
+                instance.save()
+                return redirect('home')
+        return redirect('home')   
+    return render(request, 'iBeat/upload.html', {'form':form})
+
+# def Upload(request):
+#     form = UploadMusic()
+#     if request.POST:
+#         form = UploadMusic(request.POST, request.FILES)
+#         if form.is_valid():
+#             instance = form.save(commit=False)
+#             instance.save()
+#     return render(request, 'iBeat/upload.html', {'form':form})
 
 
     
