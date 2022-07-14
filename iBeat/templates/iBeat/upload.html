@@ -1,0 +1,58 @@
+{% extends 'iBeat/base.html' %}
+{% load music_tags %}
+{% load static %}
+{% block content%}
+
+      <section id="home" class="home-section">
+      
+        <div class="container-fluid" id="divided">
+          <div class="row" >
+            <div class="col-1"></div>
+            <div class="col-11" id="col10">
+              <div class="row">
+                <div class="col-7" >
+                    <div class="col-md-8 offset-md-3 mt-5">
+                        <div class="text">Upload Music</div>
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                        <div class="form-group">
+                            <label for="title">Song Title</label>
+                            <input type="text" name="title" class="form-control" id="title" placeholder="Enter song title" required="required">
+                        </div>
+                        <!-- <div class="form-group">
+                          <label for="artist" required="required">Artist</label>
+                          <input type="text" name="Singer_name" class="form-control" id="artist" aria-describedby="emailHelp" placeholder="Enter Artist">
+                      </div> -->
+                        
+                        <hr>
+                        <div class="form-group mt-3">
+                            <label class="mr-2">Upload Song:</label>
+                            <input type="file" name="song">
+                        </div>
+                        <hr>
+                        <div class="form-group mt-3">
+                            <label class="mr-2">Upload Image:</label>
+                            <input type="file" name="image">
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label for="genre" required="required">Song genre</label>
+                            <input type="text" name="genre" class="form-control" id="genre" aria-describedby="emailHelp" placeholder="Enter genre">
+                        </div>
+                        <hr>
+                        <button type="submit" class="btn btn-dark">Submit</button>
+                        </form>
+                    </div> 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+    
+            
+
+
+{% endblock %}
+
+    

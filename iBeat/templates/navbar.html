@@ -8,9 +8,12 @@
     </div>
     <ul class="nav-list">
       <li>
+        <a href="">
           <i class='bx bx-search' ></i>
          <input type="text" placeholder="Search...">
          <span class="tooltip">Search</span>
+        </a>
+          
       </li>
       <li>
         <a href="{% url 'dashboard' %}">
@@ -47,6 +50,14 @@
        </a>
        <span class="tooltip">Profile</span>
      </li>
+     <li>
+      <a href="{% url 'upload' %}">
+        <i class='bx bx-plus-circle'></i>
+        <span class="links_name">Upload</span>
+      </a>
+      <span class="tooltip">Upload</span>
+    </li>
+    
      
      
      <li class="profile">
@@ -66,6 +77,13 @@
         <span class="links_name">email</span>
       </a>
       <span class="tooltip">email</span>
+    </li>
+    <li>
+      <a href="{% url 'logout' %}">
+        <i class='bx bx-log-out' ></i>
+        <span class="links_name">Log Out</span>
+      </a>
+      <span class="tooltip">Log Out</span>
     </li>
     </ul>
   </div>
